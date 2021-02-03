@@ -1,0 +1,35 @@
+用户模型
+name
+pwd
+type
+avatar：头像
+desc：描述
+title:职位名
+// boss的字段
+company：
+money
+
+chat模型
+
+1，proxy的问题
+2，@connect
+3，返回值不带psw
+4，loading状态
+5，redux结合chrome
+6，给用户携带cookie
+9,prop-types
+9,尝试用ts写一下
+11，browser-cookies 删除浏览器cookies
+12，优化页面跳转问题，login
+13，高阶组件就是可以直接使用@，牛逼：属性代理，反向继承
+14，socket.io 和ajax的区别
+ （1）基于websocket协议
+ （2）前后端通过事件进行双向通信
+ （3）配合express，迅速开发实时应用
+ ajax技术基于http，单向通信，只能轮询
+ socket.io socket.io-client
+ 15，react-router现在也是组件了，所以卸载的时候可以操作
+
+16，如何做一个重定向？
+
+17,{require(`../../img/${v.avatar}.png`).default  研究下这玩意是个啥情况

@@ -1,18 +1,43 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import "antd-mobile/dist/antd-mobile.css";
+import { createStore, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { reducer } from "./store";
+import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
+import Login from "./containers/login";
+import Register from "./containers/register";
+import AuthRoute from "./components/authRoute";
+import DashBoard from "./components/dashBoard";
+import Boss from "./containers/bossinfo";
+import GeniusInfo from "./containers/geniusinfo";
+import Chat from "./components/chat";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+const store = createStore(
+  reducer,
+  compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : (f) => f
+  )
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <div>
+        <AuthRoute />
+      </div>
+      <Switch>
+        <Route path="/" exact component={Login} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/bossinfo" component={Boss} />
+        <Route path="/geniusinfo" component={GeniusInfo} />
+        <Route path="/chat/:user" component={Chat} />
+
+        <Route component={DashBoard} />
+      </Switch>
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
+);
